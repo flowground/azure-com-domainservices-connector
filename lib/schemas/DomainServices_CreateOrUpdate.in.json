@@ -1,0 +1,347 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 90,
+            "pattern": "^[-\\w\\._\\(\\)]+$"
+        },
+        "domainServiceName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "The Resource model definition.",
+                    "properties": {
+                        "etag": {
+                            "description": "Resource etag",
+                            "type": "string"
+                        },
+                        "id": {
+                            "description": "Resource Id",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "location": {
+                            "description": "Resource location",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "read",
+                                "create"
+                            ]
+                        },
+                        "name": {
+                            "description": "Resource name",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "tags": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Resource tags",
+                            "type": "object"
+                        },
+                        "type": {
+                            "description": "Resource type",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "Domain service.",
+            "properties": {
+                "properties": {
+                    "description": "Domain service properties",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "domainControllerIpAddress": {
+                            "description": "List of Domain Controller IP Address",
+                            "items": {
+                                "description": "Domain Controller IP Address",
+                                "type": "string"
+                            },
+                            "readOnly": true,
+                            "type": "array"
+                        },
+                        "domainName": {
+                            "description": "The name of the Azure domain that the user would like to deploy Domain Services to.",
+                            "type": "string"
+                        },
+                        "domainSecuritySettings": {
+                            "description": "DomainSecurity Settings",
+                            "properties": {
+                                "ntlmV1": {
+                                    "description": "A flag to determine whether or not NtlmV1 is enabled or disabled.",
+                                    "enum": [
+                                        "Enabled",
+                                        "Disabled"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "NtlmV1"
+                                    }
+                                },
+                                "syncNtlmPasswords": {
+                                    "description": "A flag to determine whether or not SyncNtlmPasswords is enabled or disabled.",
+                                    "enum": [
+                                        "Enabled",
+                                        "Disabled"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "SyncNtlmPasswords"
+                                    }
+                                },
+                                "tlsV1": {
+                                    "description": "A flag to determine whether or not TlsV1 is enabled or disabled.",
+                                    "enum": [
+                                        "Enabled",
+                                        "Disabled"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "TlsV1"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "filteredSync": {
+                            "description": "Enabled or Disabled flag to turn on Group-based filtered sync",
+                            "enum": [
+                                "Enabled",
+                                "Disabled"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "filteredSync"
+                            }
+                        },
+                        "healthAlerts": {
+                            "description": "List of Domain Health Alerts",
+                            "items": {
+                                "description": "Domain Health Alerts",
+                                "properties": {
+                                    "id": {
+                                        "description": "Health Alert Id",
+                                        "readOnly": true,
+                                        "type": "string"
+                                    },
+                                    "issue": {
+                                        "description": "Health Alert Issue",
+                                        "readOnly": true,
+                                        "type": "string"
+                                    },
+                                    "lastDetected": {
+                                        "description": "Health Alert Last Detected DateTime",
+                                        "format": "date-time",
+                                        "readOnly": true,
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "description": "Health Alert Name",
+                                        "readOnly": true,
+                                        "type": "string"
+                                    },
+                                    "raised": {
+                                        "description": "Health Alert Raised DateTime",
+                                        "format": "date-time",
+                                        "readOnly": true,
+                                        "type": "string"
+                                    },
+                                    "resolutionUri": {
+                                        "description": "Health Alert TSG Link",
+                                        "readOnly": true,
+                                        "type": "string"
+                                    },
+                                    "severity": {
+                                        "description": "Health Alert Severity",
+                                        "readOnly": true,
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "readOnly": true,
+                            "type": "array"
+                        },
+                        "healthLastEvaluated": {
+                            "description": "Last domain evaluation run DateTime",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "healthMonitors": {
+                            "description": "List of Domain Health Monitors",
+                            "items": {
+                                "description": "Domain Health Monitors",
+                                "properties": {
+                                    "details": {
+                                        "description": "Health Monitor Details",
+                                        "readOnly": true,
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "description": "Health Monitor Id",
+                                        "readOnly": true,
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "description": "Health Monitor Name",
+                                        "readOnly": true,
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "readOnly": true,
+                            "type": "array"
+                        },
+                        "ldapsSettings": {
+                            "description": "Secure LDAP Settings",
+                            "properties": {
+                                "certificateNotAfter": {
+                                    "description": "NotAfter DateTime of configure ldaps certificate.",
+                                    "format": "date-time",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "certificateThumbprint": {
+                                    "description": "Thumbprint of configure ldaps certificate.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "externalAccess": {
+                                    "description": "A flag to determine whether or not Secure LDAP access over the internet is enabled or disabled.",
+                                    "enum": [
+                                        "Enabled",
+                                        "Disabled"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "ExternalAccess"
+                                    }
+                                },
+                                "externalAccessIpAddress": {
+                                    "description": "External access ip address.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "ldaps": {
+                                    "description": "A flag to determine whether or not Secure LDAP is enabled or disabled.",
+                                    "enum": [
+                                        "Enabled",
+                                        "Disabled"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "Ldaps"
+                                    }
+                                },
+                                "pfxCertificate": {
+                                    "description": "The certificate required to configure Secure LDAP. The parameter passed here should be a base64encoded representation of the certificate pfx file.",
+                                    "type": "string"
+                                },
+                                "pfxCertificatePassword": {
+                                    "description": "The password to decrypt the provided Secure LDAP certificate pfx file.",
+                                    "type": "string"
+                                },
+                                "publicCertificate": {
+                                    "description": "Public certificate used to configure secure ldap.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "notificationSettings": {
+                            "description": "Notification Settings",
+                            "properties": {
+                                "additionalRecipients": {
+                                    "description": "The list of additional recipients",
+                                    "items": {
+                                        "description": "Email address for additional recipient",
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "notifyDcAdmins": {
+                                    "description": "Should domain controller admins be notified",
+                                    "enum": [
+                                        "Enabled",
+                                        "Disabled"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "notifyDcAdmins"
+                                    }
+                                },
+                                "notifyGlobalAdmins": {
+                                    "description": "Should global admins be notified",
+                                    "enum": [
+                                        "Enabled",
+                                        "Disabled"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "notifyGlobalAdmins"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "provisioningState": {
+                            "description": "the current deployment or provisioning state, which only appears in the response.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "serviceStatus": {
+                            "description": "Status of Domain Service instance",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "subnetId": {
+                            "description": "The name of the virtual network that Domain Services will be deployed on. The id of the subnet that Domain Services will be deployed on. /virtualNetwork/vnetName/subnets/subnetName.",
+                            "type": "string"
+                        },
+                        "tenantId": {
+                            "description": "Azure Active Directory tenant id",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "vnetSiteId": {
+                            "description": "Virtual network site id",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
